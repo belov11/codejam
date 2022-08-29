@@ -226,7 +226,7 @@ cardClick.addEventListener('click', () => {
     generalArr.pop()
     gen.push(generalArr[generalArr.length - 1])
     cardImage.src = `./assets/MythicCards/${generalArr[generalArr.length - 1].slice(2, -4).replace(/[0-9]/g,'')}/${generalArr[generalArr.length - 1]}`
-    if (gen.length === sumCards) {
+    if (gen.length === sumCards - 1) {
         card.style.display = 'none'
         newGame.style.display = 'block'
     }
