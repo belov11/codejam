@@ -215,7 +215,9 @@ let gen = []
 const newGame = document.querySelector('.button__new-game')
 let sumCards = sumGreenCards + sumBrownCards + sumBlueCards
 //папка
-cardImage.src = `./assets/MythicCards/${generalArr[generalArr.length - 1].slice(2, -4).replace(/[0-9]/g,'')}/${generalArr[generalArr.length - 1]}`
+function open() {
+    cardImage.src = `./assets/MythicCards/${generalArr[generalArr.length - 1].slice(2, -4).replace(/[0-9]/g,'')}/${generalArr[generalArr.length - 1]}`
+}
 
 newGame.addEventListener('click', () => {
     window.location.reload()
@@ -281,6 +283,7 @@ for (const lvl of allLvl) {
 const startGame = document.querySelector('.button');
 startGame.addEventListener('click', () => {
     ancientsData.forEach(el => {
+        open()
         ok()
         let currentGodNum
         let playGod = document.getElementsByClassName('active-god')[0]
