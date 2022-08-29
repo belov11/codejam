@@ -240,10 +240,10 @@ let currentGod
 for (const god of godImg) {
     god.addEventListener("click", () => {
         godImg.forEach(el => {
-            el.classList.remove('active')
+            el.classList.remove('active-god')
             el.style.border = 'none';
         })
-        god.classList.toggle('active')
+        god.classList.toggle('active-god')
         god.style.border = '2px solid white'
         currentGod = god.src.slice(38, -4)
     })
@@ -283,9 +283,18 @@ const startGame = document.querySelector('.button');
 startGame.addEventListener('click', () => {
     ancientsData.forEach(el => {
         ok()
-        let currentGodNum = 0
+        let currentGodNum
+        let playGod = document.getElementsByClassName('active-god')[0]
+        console.log(playGod)
+
+        if (playGod.alt.toLowerCase() === 'azathoth') currentGodNum = 0
+        if (playGod.alt.toLowerCase() === 'cthulthu') currentGodNum = 1
+        if (playGod.alt.toLowerCase() === 'iogsothoth') currentGodNum = 2
+        if (playGod.alt.toLowerCase() === 'shubniggurath') currentGodNum = 3
+
+        console.log(currentGodNum)
         sumCard(currentGodNum)
-        if (el.name.toLowerCase() == currentGod.toLowerCase()) {
+        /* if (el.name.toLowerCase() == currentGod.toLowerCase()) {
             if (currentGod.toLowerCase() == 'azathoth'.toLowerCase()) {
                 currentGodNum = 0
             }
@@ -299,7 +308,7 @@ startGame.addEventListener('click', () => {
                 currentGodNum = 3
             }            
             sumCard(currentGodNum)
-        }
+        } */
 
     })
 })
