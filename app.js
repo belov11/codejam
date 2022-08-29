@@ -283,7 +283,7 @@ const startGame = document.querySelector('.button');
 startGame.addEventListener('click', () => {
     ancientsData.forEach(el => {
         ok()
-        let currentGodNum = 0;
+        let currentGodNum = 0
         sumCard(currentGodNum)
         if (el.name.toLowerCase() == currentGod.toLowerCase()) {
             if (currentGod.toLowerCase() == 'azathoth'.toLowerCase()) {
