@@ -8,19 +8,34 @@ import cardsDataBlue from './data/mythicCards/blue/index.js'
 import cardsDataGreen from './data/mythicCards/green/index.js'
 import cardsDataBrown from './data/mythicCards/brown/index.js'
 
-//сумма карт всех
-function sumCard(god) {
-const sumGreenCards = ancientsData[god].firstStage.greenCards + ancientsData[god].secondStage.greenCards + ancientsData[god].thirdStage.greenCards
-const sumBrownCards = ancientsData[god].firstStage.brownCards + ancientsData[god].secondStage.brownCards + ancientsData[god].thirdStage.brownCards
-const sumBlueCards = ancientsData[god].firstStage.blueCards + ancientsData[god].secondStage.blueCards + ancientsData[god].thirdStage.blueCards
-
 //массивы с легкими средними и тяжелыми картами
-
 function addCard(cards, arr, difficulty) {
     cards.forEach(el => {
         el.difficulty === difficulty ? arr.push(el.cardFace) : ""
     })
 }
+//три массива с этапами будем замешивать в функции shuffle
+function shuffle(arr) {
+    arr.sort(() => Math.random() - 0.5)
+}
+
+function random(num, arr, stage) {
+    let m = {}
+    for (let i = 0; i < num; i++) {
+        let rand = Math.floor(Math.random() * (arr.length - i))
+        stage.push(((rand in m) ? m[rand] : arr[rand]))
+        let l = arr.length - i - 1
+        m[rand] = (l in m) ? m[l] : arr[l]
+    }
+    stage.forEach(el => {
+        arr.splice(arr.indexOf(el), 1)
+        })
+}
+//сумма карт всех
+function sumCard(god) {
+const sumGreenCards = ancientsData[god].firstStage.greenCards + ancientsData[god].secondStage.greenCards + ancientsData[god].thirdStage.greenCards
+const sumBrownCards = ancientsData[god].firstStage.brownCards + ancientsData[god].secondStage.brownCards + ancientsData[god].thirdStage.brownCards
+const sumBlueCards = ancientsData[god].firstStage.blueCards + ancientsData[god].secondStage.blueCards + ancientsData[god].thirdStage.blueCards
 
 //зеленые карты
 let arrEasyGreen = []
@@ -138,28 +153,12 @@ let stageThreeGreenCard = ancientsData[god].thirdStage.greenCards
 let stageThreeBrownCard = ancientsData[god].thirdStage.brownCards
 let stageThreeBlueCard = ancientsData[god].thirdStage.blueCards
 
-//три массива с этапами будем замешивать в функции shuffle
-function shuffle(arr) {
-    arr.sort(() => Math.random() - 0.5)
-}
 
 //stage 1
 let arrStageOne = []
 let arrStageOneGreen = []
 let arrStageOneBrown = []
 let arrStageOneBlue = []
-function random(num, arr, stage) {
-    let m = {}
-    for (let i = 0; i < num; i++) {
-        let rand = Math.floor(Math.random() * (arr.length - i))
-        stage.push(((rand in m) ? m[rand] : arr[rand]))
-        let l = arr.length - i - 1
-        m[rand] = (l in m) ? m[l] : arr[l]
-    }
-    stage.forEach(el => {
-        arr.splice(arr.indexOf(el), 1)
-        })
-}
 
 random(stageOneGreenCard, newArrEasyGreen, arrStageOneGreen) 
 random(stageOneBrownCard, newArrEasyBrown, arrStageOneBrown) 
