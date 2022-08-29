@@ -215,13 +215,16 @@ let gen = []
 const newGame = document.querySelector('.button__new-game')
 let sumCards = sumGreenCards + sumBrownCards + sumBlueCards
 //папка
-cardImage.src = `./assets/MythicCards/${generalArr[generalArr.length - 1].slice(2, -4).replace(/[0-9]/g,'')}/${generalArr[generalArr.length - 1]}`
+let flag = true
+if (flag === true) {
+    cardImage.src = `./assets/MythicCards/${generalArr[generalArr.length - 1].slice(2, -4).replace(/[0-9]/g,'')}/${generalArr[generalArr.length - 1]}`
+}
+flag = false
 newGame.addEventListener('click', () => {
     window.location.reload()
 })
 //переключение картинок
 cardClick.addEventListener('click', () => {
-
     generalArr.pop()
     gen.push(generalArr[generalArr.length - 1])
     cardImage.src = `./assets/MythicCards/${generalArr[generalArr.length - 1].slice(2, -4).replace(/[0-9]/g,'')}/${generalArr[generalArr.length - 1]}`
