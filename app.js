@@ -168,7 +168,6 @@ random(stageOneBlueCard, newArrEasyBlue, arrStageOneBlue)
 arrStageOne = arrStageOne.concat(arrStageOneGreen, arrStageOneBrown, arrStageOneBlue)
 
 shuffle(arrStageOne)
-console.log(arrStageOne)
 
 //stage 2
 let arrStageTwo = []
@@ -182,7 +181,6 @@ random(stageTwoBlueCard, newArrEasyBlue, arrStageTwoBlue)
 arrStageTwo = arrStageTwo.concat(arrStageTwoGreen, arrStageTwoBrown, arrStageTwoBlue)
 
 shuffle(arrStageTwo)
-console.log(arrStageTwo)
 
 //stage 3
 let arrStageThree = []
@@ -196,7 +194,6 @@ random(stageThreeBlueCard, newArrEasyBlue, arrStageThreeBlue)
 arrStageThree = arrStageThree.concat(arrStageThreeGreen, arrStageThreeBrown, arrStageThreeBlue)
 
 shuffle(arrStageThree)
-console.log(arrStageThree)
 
 const numCounter = document.querySelectorAll('.counter-list li')
 numCounter[0].textContent = ancientsData[god].firstStage.greenCards
@@ -215,7 +212,8 @@ let card = document.querySelector('.card-bottom')
 let cardImage = document.querySelector('.card-top img')
 let generalArr = arrStageThree.concat(arrStageTwo, arrStageOne)
 let gen = []
-const newGame = document.querySelector('.button__new-game');
+const newGame = document.querySelector('.button__new-game')
+let sumCards = sumGreenCards + sumBrownCards + sumBlueCards
 //папка
 cardImage.src = `./assets/MythicCards/${generalArr[generalArr.length - 1].slice(2, -4).replace(/[0-9]/g,'')}/${generalArr[generalArr.length - 1]}`
 
@@ -224,10 +222,11 @@ newGame.addEventListener('click', () => {
 })
 //переключение картинок
 cardClick.addEventListener('click', () => {
-    gen.push(generalArr[generalArr.length - 1])
+
     generalArr.pop()
+    gen.push(generalArr[generalArr.length - 1])
     cardImage.src = `./assets/MythicCards/${generalArr[generalArr.length - 1].slice(2, -4).replace(/[0-9]/g,'')}/${generalArr[generalArr.length - 1]}`
-    if (generalArr.length == 1) {
+    if (gen.length === sumCards) {
         card.style.display = 'none'
         newGame.style.display = 'block'
     }
@@ -285,31 +284,12 @@ startGame.addEventListener('click', () => {
         ok()
         let currentGodNum
         let playGod = document.getElementsByClassName('active-god')[0]
-        console.log(playGod)
 
         if (playGod.alt.toLowerCase() === 'azathoth') currentGodNum = 0
         if (playGod.alt.toLowerCase() === 'cthulthu') currentGodNum = 1
         if (playGod.alt.toLowerCase() === 'iogsothoth') currentGodNum = 2
         if (playGod.alt.toLowerCase() === 'shubniggurath') currentGodNum = 3
-
-        console.log(currentGodNum)
         sumCard(currentGodNum)
-        /* if (el.name.toLowerCase() == currentGod.toLowerCase()) {
-            if (currentGod.toLowerCase() == 'azathoth'.toLowerCase()) {
-                currentGodNum = 0
-            }
-            if (currentGod.toLowerCase() == 'cthulhu'.toLowerCase()) {
-                currentGodNum = 1
-            }
-            if (currentGod.toLowerCase() == 'iogSothoth'.toLowerCase()) {
-                currentGodNum = 2
-            }
-            if (currentGod.toLowerCase() == 'shubNiggurath'.toLowerCase()) {
-                currentGodNum = 3
-            }            
-            sumCard(currentGodNum)
-        } */
-
     })
 })
 
