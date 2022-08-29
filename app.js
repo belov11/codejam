@@ -3,6 +3,7 @@ import cthulhu from './assets/Ancients/Cthulthu.png';
 import iogSothoth from './assets/Ancients/IogSothoth.png';
 import shubNiggurath from './assets/Ancients/ShubNiggurath.png';
 import Ancients from '../assets/Ancients/index.js' */
+"use strict"
 import {ancientsData} from './data/ancients.js'
 import cardsDataBlue from './data/mythicCards/blue/index.js'
 import cardsDataGreen from './data/mythicCards/green/index.js'
